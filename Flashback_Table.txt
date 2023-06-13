@@ -1,0 +1,32 @@
+flashback Table:
+ ==> a cause d'une instruction lmd erronnée (modification des données d'une table non souhaitées).
+
+- connect user1
+ => l'utilisateur user1 se connecte.
+
+-select * from employees;
+ => dans cette étape on vérifie les données de la table employees.
+
+-alter session set nls_date_format='dd/mm/yyyy hh24:mi:ss';
+ => modifiée la date de la session courante.
+
+-select sysdate from dual;
+ => afficher la date complète.
+
+-update employees set id=0;
+ => mettre les ids des employees a 0.
+
+-commit;
+ => validé la transaction.
+
+-select id from employees;
+ => afficher les ids des employées.
+
+-alter table employees enable row movement;
+ => avant de flasher la table il faut faire un mouvement de ligne de la table.
+
+-flashback table employees to timestamp to_timestamp('','dd/mm/yyyy hh24:mi:ss');
+ => flasher la table jusqu'a un point antérieur dans le temps.
+
+-select id from employees;
+ => maintenant , on a récupéré les ids de notre table avant modification a 0.
